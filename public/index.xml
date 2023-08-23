@@ -16,24 +16,6 @@
       <description>Test page</description>
     </item>
     
-    <item>
-      <title>Test 2</title>
-      <link>http://example.org/posts/test-copy-2/</link>
-      <pubDate>Wed, 23 Aug 2023 07:29:40 -0400</pubDate>
-      
-      <guid>http://example.org/posts/test-copy-2/</guid>
-      <description>Test page</description>
-    </item>
-    
-    <item>
-      <title>Test 3</title>
-      <link>http://example.org/posts/test-copy/</link>
-      <pubDate>Wed, 23 Aug 2023 07:29:40 -0400</pubDate>
-      
-      <guid>http://example.org/posts/test-copy/</guid>
-      <description>Test page</description>
-    </item>
-    
     
     
   </channel>

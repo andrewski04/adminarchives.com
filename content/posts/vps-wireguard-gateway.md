@@ -1,12 +1,11 @@
 ---
-title: "Test 3"
-date: 2023-08-23T07:29:40-04:00
+title: "Wireguard VPS as Reverse Proxy and Gateway to Home Network"
+date: 2023-08-23T12:20:06-04:00
 draft: true
-
 
 # weight: 1
 # aliases: ["/first"]
-tags: ["Homelab"]
+tags: ["Homelab", "Wireguard", "VPS", "Reverse Proxy"]
 author: "Andrew Houser"
 # author: ["Me", "You"] # multiple authors
 showToc: true
@@ -14,13 +13,13 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Test page"
-canonicalURL: "https://andrew-houser.com/posts/test/"
+description: "Connect to home network and forward public services through VPS with Wireguard. Bypasses CGNAT and avoids directly exposing network."
+canonicalURL: "https://andrew-houser.com/posts/vps-wireguard-gateway/"
 disableHLJS: true # to disable highlightjs
 disableShare: true
 disableHLJS: false
 hideSummary: false
-searchHidden: false
+searchHidden: true
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
@@ -40,4 +39,9 @@ UseHugoToc: true
 #
 ---
 
-hey
+### Requirments
+ - Device or VM on home network with Wireguard
+ - VPS with public ip, Wireguard, and reverse proxy of choice.  
+  (Nginx Proxy Manager is great for most basic uses.)
+
+###
