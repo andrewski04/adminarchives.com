@@ -15,7 +15,7 @@ hidemeta: false
 comments: false
 description: "Connect to home network and forward public services through VPS with Wireguard. Bypasses CGNAT and avoids directly exposing network."
 canonicalURL: "https://andrew-houser.com/posts/vps-wireguard-gateway/"
-disableHLJS: true # to disable highlightjs
+disableHLJS: false # to disable highlightjs
 disableShare: true
 hideSummary: false
 searchHidden: true
@@ -54,7 +54,7 @@ UseHugoToc: true
 ### VPS Gateway
 
 
-```
+```yaml
 [Interface]
 # Use unique WG subnet
 Address = 10.0.0.1/24  
@@ -89,7 +89,7 @@ PersistentKeepalive = 25
 ### Home Server
 
 
-```
+```yaml
 [Interface]
 PrivateKey = ####
 Address = 10.0.0.2/24

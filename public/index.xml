@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Andrew-Houser.com</title>
-    <link>http://example.org/</link>
-    <description>Recent content on Andrew-Houser.com</description>
+    <title>Andrew Houser</title>
+    <link>http://andrewhouser.com/</link>
+    <description>Recent content on Andrew Houser</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Aug 2023 07:29:40 -0400</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Aug 2023 12:20:06 -0400</lastBuildDate><atom:link href="http://andrewhouser.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>http://example.org/posts/test/</link>
-      <pubDate>Wed, 23 Aug 2023 07:29:40 -0400</pubDate>
+      <title>Wireguard VPS as Reverse Proxy and Gateway to Home Network</title>
+      <link>http://andrewhouser.com/posts/vps-wireguard-gateway/</link>
+      <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
       
-      <guid>http://example.org/posts/test/</guid>
-      <description>Test page</description>
+      <guid>http://andrewhouser.com/posts/vps-wireguard-gateway/</guid>
+      <description>Connect to home network and forward public services through VPS with Wireguard. Bypasses CGNAT and avoids directly exposing network.</description>
     </item>
     
     

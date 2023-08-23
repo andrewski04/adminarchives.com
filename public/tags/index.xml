@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on Andrew-Houser.com</title>
-    <link>http://example.org/tags/</link>
-    <description>Recent content in Tags on Andrew-Houser.com</description>
+    <title>Tags on Andrew Houser</title>
+    <link>http://andrewhouser.com/tags/</link>
+    <description>Recent content in Tags on Andrew Houser</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Aug 2023 07:29:40 -0400</lastBuildDate><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Aug 2023 12:20:06 -0400</lastBuildDate><atom:link href="http://andrewhouser.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Homelab</title>
-      <link>http://example.org/tags/homelab/</link>
-      <pubDate>Wed, 23 Aug 2023 07:29:40 -0400</pubDate>
+      <link>http://andrewhouser.com/tags/homelab/</link>
+      <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
       
-      <guid>http://example.org/tags/homelab/</guid>
+      <guid>http://andrewhouser.com/tags/homelab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reverse Proxy</title>
+      <link>http://andrewhouser.com/tags/reverse-proxy/</link>
+      <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
+      
+      <guid>http://andrewhouser.com/tags/reverse-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPS</title>
+      <link>http://andrewhouser.com/tags/vps/</link>
+      <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
+      
+      <guid>http://andrewhouser.com/tags/vps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wireguard</title>
+      <link>http://andrewhouser.com/tags/wireguard/</link>
+      <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
+      
+      <guid>http://andrewhouser.com/tags/wireguard/</guid>
       <description></description>
     </item>
     

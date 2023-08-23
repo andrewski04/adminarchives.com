@@ -1,6 +1,6 @@
-baseURL: http://example.org/
+baseURL: http://andrewhouser.com/
 languageCode: en-us
-title: Andrew-Houser.com
+title: Andrew Houser
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -23,7 +23,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: Andrew-Houser.com
+  title: Andrew Houser
   description: "My personal portfolio and blog."
   keywords: [Blog, Portfolio, PaperMod]
   author: Andrew Houser
@@ -50,7 +50,7 @@ params:
   tocopen: false
 
   assets:
-    disableHLJS: true # to disable highlight.js
+    disableHLJS: false # to disable highlight.js
   #    # disableFingerprinting: true
   #    favicon: "<link / abs url>"
   #    favicon16x16: "<link / abs url>"
@@ -80,16 +80,14 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hey! My name is Andrew Houser."
-    Content: Welcome to my blog where I document projects I'm working on.
+    Title: "Welcome to my site!"
+    Content: I am a computer science student who enjoys system administration. This is where I document projects I'm working on or useful information.
 
   socialIcons:
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
     - name: linkedin
-      url: "https://example.com/"
+      url: "https://www.linkedin.com/in/andrew-houser/"
+    - name: github
+      url: "https://github.com/andrewski04"
 
   #  analytics:
   #    google:
@@ -138,14 +136,13 @@ menu:
     #  name: example.org
     #  url: https://example.org
     #  weight: 30
-
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
-pygmentsUseClasses: true
-markup:
-  highlight:
-    noClasses: false
-    anchorLineNos: false
-    codeFences: true
-    guessSyntax: false
-    lineNos: false
-    style: monokai
+
+#markup:
+#h#ighlight:
+#noClasses: true
+#anchorLineNos: true
+#codeFences: true
+#guessSyntax: true
+# lineNos: true
+#style: monokai
