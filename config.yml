@@ -80,8 +80,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Welcome to my site!"
-    Content: I am a computer science student who enjoys system administration. This is where I document projects I'm working on or useful information.
+    Title: "Welcome to my website!"
+    Content: I am a computer science student who enjoys system administration. This is where I document projects I'm working on and other things I want to share.
 
   socialIcons:
     - name: linkedin
