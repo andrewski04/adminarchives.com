@@ -1,6 +1,6 @@
 baseURL: https://andrew-houser.com/
 languageCode: en-us
-title: Andrew Houser
+title: Andrew's Admin Archives
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -31,9 +31,9 @@ params:
   #images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: dark # dark, light
-  disableThemeToggle: true
+  disableThemeToggle: false
 
-  ShowReadingTime: true
+  ShowReadingTime: false
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
@@ -80,13 +80,16 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Welcome to my website!"
-    Content: I am a computer science student who enjoys system administration and many other comp sci topics. This is where I document projects I'm working on and other things I want to share.
+    Title: "Welcome to Andrew's Admin Archives"
+    Content: Hi, I'm Andrew, a computer science student at the BlueSky Institute who enjoys systems administration and home server hosting. This is a tiny site where I document projects I'm working on and hopefully help some others who are trying to learn!
 
   socialIcons:
     - name: github
       url: "https://github.com/andrewski04"
-
+      title: "GitHub"
+    #- name: other
+    #  url: "https://github.com/andrewski04"
+    
   #  analytics:
   #    google:
   #      SiteVerificationTag: "XYZabc"
@@ -130,10 +133,10 @@ menu:
       name: search
       url: /search/
       weight: 50
-    #- identifier: example
-    #  name: example.org
-    #  url: https://example.org
-    #  weight: 30
+    - identifier: resume
+      name: resume
+      url: /resume.pdf
+      weight: 100
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 
 #markup:
