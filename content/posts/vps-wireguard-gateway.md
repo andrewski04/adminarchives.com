@@ -5,7 +5,7 @@ draft: true
 
 # weight: 1
 # aliases: ["/first"]
-tags: ["Homelab", "Wireguard", "VPS", "Reverse Proxy"]
+tags: ["Homelab", "Wireguard", "VPS", "Reverse Proxy", "Networking"]
 author: "Andrew Houser"
 # author: ["Me", "You"] # multiple authors
 showToc: true
@@ -37,6 +37,8 @@ UseHugoToc: true
 #    appendFilePath: true # to append file path to Edit link
 #
 ---
+
+> **NOTE:**  I soon plan to put more time into these articles including additional details and specific configs, as well as explaining how I set everything up. If you have any questions or would like to contribute to an article, please contact me at _andrew@andrew-houser.com_.
 
 ## Network Diagram
 

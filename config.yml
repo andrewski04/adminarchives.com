@@ -66,22 +66,22 @@ params:
   # profile-mode
   profileMode:
     enabled: false # needs to be explicitly set
-    title: ExampleSite
-    subtitle: "This is subtitle"
-    imageUrl: "<img location>"
-    imageWidth: 120
-    imageHeight: 120
-    imageTitle: my image
-    buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
+    #title: ExampleSite
+    #subtitle: "This is subtitle"
+    #imageUrl: "<img location>"
+    #imageWidth: 120
+    #imageHeight: 120
+    #imageTitle: my image
+    #buttons:
+    #  - name: Posts
+    #    url: posts
+    #  - name: Tags
+    #    url: tags
 
   # home-info mode
   homeInfoParams:
     Title: "Welcome to my website!"
-    Content: I am a computer science student who enjoys system administration. This is where I document projects I'm working on and other things I want to share.
+    Content: I am a computer science student who enjoys system administration and many other comp sci topics. This is where I document projects I'm working on and other things I want to share.
 
   socialIcons:
     - name: github
