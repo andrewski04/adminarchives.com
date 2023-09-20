@@ -13,7 +13,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Connect to home network and forward public services through VPS with Wireguard. Bypasses CGNAT and avoids directly exposing network."
+description: "Navigate around Carrier-Grade NAT (CGNAT) limitations by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network."
 canonicalURL: "https://andrew-houser.com/posts/vps-wireguard-gateway/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
@@ -38,7 +38,17 @@ UseHugoToc: true
 #
 ---
 
-## Network Diagram
+### Why use this over services like Tailscale, Zerotier, etc?
+
+Wireguard through a VPS will give you  
+- More control over your network and where your data goes.
+- Infrastructure independence; you will not need to rely on proprietary servers that could go down at any time.
+- Host on VPS of your choosing and get a public IP for your homelab.
+
+Also, it's _extremely_ fast. It can easily transfer over 500 mbit/s while only adding a few milliseconds of latency.
+This website is currently running through the setup and I am able to establish a connection through the VPS (hosted about 100 miles away) and back to my home network with less than 20ms of latency. I even host game servers with this setup and have friends connect without issue from across the country.
+
+### Network Diagram
 
 ```less
    +-------------+
@@ -69,7 +79,7 @@ UseHugoToc: true
    | & Services  |
    +-------------+
 ```
-## Requirments
+### Requirments
  - Device or VM on home network with Wireguard
  - VPS with public ip, Wireguard, and reverse proxy of choice.  
    (Nginx Proxy Manager is great for most basic uses.)
