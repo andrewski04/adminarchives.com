@@ -25,7 +25,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Andrew Houser
   description: "My personal portfolio and blog."
-  keywords: [Blog, Portfolio, PaperMod]
+  keywords: [Blog, Portfolio, PaperMod, homelab, network, vps, wireguard, vlan]
   author: Andrew Houser
   # author: ["Me", "You"] # multiple authors
   #images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -87,8 +87,8 @@ params:
     - name: github
       url: "https://github.com/andrewski04"
       title: "GitHub"
-    #- name: other
-    #  url: "https://github.com/andrewski04"
+    - name: email
+      url: "mailto:andrew@andrew-houser.com"
     
   #  analytics:
   #    google:

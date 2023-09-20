@@ -38,12 +38,37 @@ UseHugoToc: true
 #
 ---
 
-> **NOTE:**  I soon plan to put more time into these articles including additional details and specific configs, as well as explaining how I set everything up. If you have any questions or would like to contribute to an article, please contact me at _andrew@andrew-houser.com_.
-
 ## Network Diagram
 
-![diagram](/vps-wg-diagram.png)
-
+```less
+   +-------------+
+   |  Internet   |
+   +-------------+
+        |
+        |
+   +------------+      +------------+
+   |   Public   |      |  Public    |
+   |    Users   |<---->|    VPS     |  
+   +------------+      +------------+
+                          |      |
+                          |      | 
+                          |      | Public Reverse Proxy 
+   +-------------+        |      | (for specific, forwarded services)
+   |   CGNAT     |        |      
+   +-------------+        | Secure WireGuard Network
+        |                 | (Access entire home network
+        |                 | if connected through Wireguard)
+   +------------+         | 
+   |   Home     |<--------+
+   | WireGuard  |
+   |  Server    |
+   +------------+
+        |
+   +-------------+
+   | Home Network|
+   | & Services  |
+   +-------------+
+```
 ## Requirments
  - Device or VM on home network with Wireguard
  - VPS with public ip, Wireguard, and reverse proxy of choice.  
