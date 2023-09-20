@@ -1,11 +1,11 @@
 ---
-title: "Wireguard VPS as Reverse Proxy and Gateway to Home Network"
+title: "WireGuard VPS as Reverse Proxy and Gateway to Home Network"
 date: 2023-08-23T12:20:06-04:00
 draft: true
 
 # weight: 1
 # aliases: ["/first"]
-tags: ["Homelab", "Wireguard", "VPS", "Reverse Proxy", "Networking"]
+tags: ["Homelab", "WireGuard", "VPS", "Reverse Proxy", "Networking"]
 author: "Andrew Houser"
 # author: ["Me", "You"] # multiple authors
 showToc: true
@@ -38,17 +38,17 @@ UseHugoToc: true
 #
 ---
 
-### Why use this over services like Tailscale, Zerotier, etc?
+## Why use this over services like Tailscale, Zerotier, etc?
 
-Wireguard through a VPS will give you  
+WireGuard through a VPS will give you  
 - More control over your network and where your data goes.
 - Infrastructure independence; you will not need to rely on proprietary servers that could go down at any time.
 - Host on VPS of your choosing and get a public IP for your homelab.
 
 Also, it's _extremely_ fast. It can easily transfer over 500 mbit/s while only adding a few milliseconds of latency.
-This website is currently running through the setup and I am able to establish a connection through the VPS (hosted about 100 miles away) and back to my home network with less than 20ms of latency. I even host game servers with this setup and have friends connect without issue from across the country.
+This website is currently running through the setup and I am able to establish a connection through the VPS (hosted about 100 miles away) and back to my home network with less than 20ms of latency. I even host game servers with this setup and have friends connect from across the country without issue.
 
-### Network Diagram
+## Network Diagram
 
 ```less
    +-------------+
@@ -67,7 +67,7 @@ This website is currently running through the setup and I am able to establish a
    |   CGNAT     |        |      
    +-------------+        | Secure WireGuard Network
         |                 | (Access entire home network
-        |                 | if connected through Wireguard)
+        |                 | if connected through WireGuard)
    +------------+         | 
    |   Home     |<--------+
    | WireGuard  |
@@ -79,19 +79,20 @@ This website is currently running through the setup and I am able to establish a
    | & Services  |
    +-------------+
 ```
-### Requirments
+## Requirments
  - Device or VM on home network with Wireguard
- - VPS with public ip, Wireguard, and reverse proxy of choice.  
-   (Nginx Proxy Manager is great for most basic uses.)
+ - VPS with public IP, Wireguard, and a reverse proxy of choice.  
+   (Nginx Proxy Manager is great for most basic uses)
 
-## Wireguard Configs
-
-> **NOTE:  The Wireguard network and your home network must be on different subnets!** Custom routing and masquarading rules will allow you to connect to home network through Wireguard. These rules were adapted from adapted from [Multi Hop Wireguard](https://www.procustodibus.com/blog/2022/06/multi-hop-wireguard/) by [Justin Ludwig](https://www.procustodibus.com/authors/justin-ludwig/).
+## WireGuard Configs
 
 ### VPS Gateway
 
+First, we have the WireGuard config for the VPS. The config has IP rules that route any traffic coming in from the WireGuard interface to go back out of the WireGuard interface. This is what allows you to connect to the rest of your home network, as well as the internet through your home network. It also adds an optional route to your home network. This route is for the VPS itself to route to your home network through WireGuard, and should be used for if you have a public reverse proxy forwarding from your home network. Finally, it has your home WireGuard server as a peer, along with any other devices you'd like on the network.
 
-```yaml
+Your VPS may or may not have a firewall setup by default, but I recommend using UFW and only allowing connections on the ports for WireGuard and your reverse proxy.
+
+```toml
 [Interface]
 # Use unique WG subnet
 Address = 10.0.0.1/24  
@@ -121,12 +122,23 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 
 # Add other clients here
+
+# Example: laptop client
+[Peer]
+PublicKey = ####
+PresharedKey = ####
+# Unique IP with /32 subnet (will only route packets for that ip to that device)
+AllowedIPs = 10.0.0.5/32 
+PersistentKeepalive = 25
+
 ```
+> **NOTE:  The Wireguard network and your home network must be on different subnets!** Custom routing and masquarading rules will allow you to connect to home network through Wireguard. These rules were adapted from adapted from [Multi Hop Wireguard](https://www.procustodibus.com/blog/2022/06/multi-hop-wireguard/) by [Justin Ludwig](https://www.procustodibus.com/authors/justin-ludwig/).
 
 ### Home Server
 
+Your home WireGuard server takes all traffic coming in and marks it with a tag. Packets with this tag are then masqueraded out through your servers default gateway (your home network or home router). This allows you to connect to other devices on the home network as well as the internet through your home network, such that any devices connected through WireGuard will share the same public IP as your home network.
 
-```yaml
+```toml
 [Interface]
 PrivateKey = ####
 Address = 10.0.0.2/24
@@ -152,3 +164,25 @@ Endpoint = ##.##.##.##:51820
 AllowedIPs = 10.0.0.1/24
 PersistentKeepalive = 25
 ```
+
+## Nginx Reverse Proxy
+
+Finally, you may want to set up a reverse proxy. This will allow you to connect to services at home through a public domain as well as forward port streams directly, such as for a game server.
+
+I would highly recommend using Nginx Proxy Manager (NPM). Use the following Docker Compose to get it running very quick.
+
+```yaml
+version: '3.8'
+services:
+  nginx:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      - /var/log/nginx:/var/log/nginx
+```
+
+From the NPM web interface you can add domains and requests to those domain are forwarded to the specified IP address and port of a service on your home network. Now just point that domain towards your public VPS and you can connect to that domain from anywhere!
