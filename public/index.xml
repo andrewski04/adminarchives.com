@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Andrew Houser</title>
+    <title>Andrew&#39;s Admin Archives</title>
     <link>https://andrew-houser.com/</link>
-    <description>Recent content on Andrew Houser</description>
+    <description>Recent content on Andrew&#39;s Admin Archives</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Aug 2023 12:20:06 -0400</lastBuildDate><atom:link href="https://andrew-houser.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Sep 2023 12:20:06 -0400</lastBuildDate><atom:link href="https://andrew-houser.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Wireguard VPS as Reverse Proxy and Gateway to Home Network</title>
+      <title>Isolate your homelab using VLANs, Proxmox, and OPNsense</title>
+      <link>https://andrew-houser.com/posts/isolate-homelab-with-vlan/</link>
+      <pubDate>Tue, 19 Sep 2023 12:20:06 -0400</pubDate>
+      
+      <guid>https://andrew-houser.com/posts/isolate-homelab-with-vlan/</guid>
+      <description>Create a secure and efficient isolated homelab on a non-VLAN aware home network using VLAN-aware switches and Proxmox bridges. When paired with Wireguard, you can securely access this network from anywhere. No longer takes down your entire houses network when you mess something up!</description>
+    </item>
+    
+    <item>
+      <title>WireGuard VPS as Reverse Proxy and Gateway to Home Network</title>
       <link>https://andrew-houser.com/posts/vps-wireguard-gateway/</link>
       <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
       
       <guid>https://andrew-houser.com/posts/vps-wireguard-gateway/</guid>
-      <description>Network Diagram Requirments  Device or VM on home network with Wireguard VPS with public ip, Wireguard, and reverse proxy of choice.
-(Nginx Proxy Manager is great for most basic uses.)  Wireguard Configs  NOTE: The Wireguard network and your home network must be on different subnets! Custom routing and masquarading rules will allow you to connect to home network through Wireguard. These rules were adapted from adapted from Multi Hop Wireguard by Justin Ludwig.</description>
+      <description>Navigate around Carrier-Grade NAT (CGNAT) limitations by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network.</description>
     </item>
     
-    <item>
-      <title>Posts</title>
-      <link>https://andrew-houser.com/posts/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://andrew-houser.com/posts/</guid>
-      <description>All posts</description>
-    </item>
     
-    <item>
-      <title>Search</title>
-      <link>https://andrew-houser.com/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://andrew-houser.com/search/</guid>
-      <description>Search Andrew-Houser.com</description>
-    </item>
     
   </channel>
 </rss>

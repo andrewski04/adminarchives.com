@@ -1,1 +1,3 @@
 User-agent: *
+Disallow:
+Sitemap: https://andrew-houser.com/sitemap.xml

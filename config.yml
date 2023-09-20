@@ -133,10 +133,10 @@ menu:
       name: search
       url: /search/
       weight: 50
-    - identifier: resume
-      name: resume
-      url: /resume.pdf
-      weight: 100
+#    - identifier: resume
+#      name: resume
+#      url: /resume.pdf
+#      weight: 100
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 
 #markup:
