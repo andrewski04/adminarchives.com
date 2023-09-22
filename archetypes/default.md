@@ -7,7 +7,7 @@ draft: true
 # weight: 1
 # aliases: ["/first"]
 tags: ["Homelab"]
-author: "Andrew Houser"
+author: "Andrew"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: false
@@ -15,7 +15,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Test page"
-canonicalURL: "https://andrew-houser.com/posts/test/"
+canonicalURL: "https://adminarchives.com/posts/test/"
 disableHLJS: true # to disable highlightjs
 disableShare: true
 disableHLJS: false

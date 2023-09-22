@@ -6,7 +6,7 @@ draft: true
 # weight: 1
 # aliases: ["/first"]
 tags: ["Homelab", "VLAN", "Networking"]
-author: "Andrew Houser"
+author: "Andrew"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: false
@@ -14,7 +14,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Create a secure and efficient isolated homelab on a non-VLAN aware home network using VLAN-aware switches and Proxmox bridges. When paired with Wireguard, you can securely access this network from anywhere. No longer takes down your entire houses network when you mess something up!"
-canonicalURL: "https://andrew-houser.com/posts/isolate-homelab-with-vlan/"
+canonicalURL: "https://adminarchives.com/posts/isolate-homelab-with-vlan/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
 hideSummary: false

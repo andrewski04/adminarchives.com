@@ -23,10 +23,10 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: Andrew Houser
-  description: "My personal portfolio and blog."
+  title: Andrew's Admin Archives
+  description: "A small blog focused on system administration"
   keywords: [Blog, Portfolio, PaperMod, homelab, network, vps, wireguard, vlan]
-  author: Andrew Houser
+  author: Andrew 
   # author: ["Me", "You"] # multiple authors
   #images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
@@ -81,14 +81,14 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Welcome to Andrew's Admin Archives"
-    Content: Hi, I'm Andrew, a computer science student at the BlueSky Institute who enjoys systems administration and home server hosting. This is a tiny site where I document projects I'm working on and hopefully help some others who are trying to learn!
+    Content: Hi, I'm Andrew, a computer science student who enjoys systems administration and home server hosting. This is a tiny site where I document projects I'm working on and hopefully help some others who are trying to learn!
 
   socialIcons:
     - name: github
       url: "https://github.com/andrewski04"
       title: "GitHub"
-    - name: email
-      url: "mailto:andrew@andrew-houser.com"
+    #- name: email
+    #  url: "mailto:andrew@andrew-houser.com"
     
   #  analytics:
   #    google:

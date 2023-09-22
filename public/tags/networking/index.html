@@ -3,11 +3,11 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>404 Page not found | Andrew's Admin Archives</title>
+<title>Networking | Andrew's Admin Archives</title>
 <meta name=keywords content>
 <meta name=description content="A small blog focused on system administration">
 <meta name=author content="Andrew">
-<link rel=canonical href=https://adminarchives.com/404.html>
+<link rel=canonical href=https://adminarchives.com/tags/networking/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U+6hYRq/Ez/nm5vg=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://adminarchives.com/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://adminarchives.com/favicon-16x16.png>
@@ -16,14 +16,15 @@
 <link rel=mask-icon href=https://adminarchives.com/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
+<link rel=alternate type=application/rss+xml href=https://adminarchives.com/tags/networking/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
-</noscript><meta property="og:title" content="404 Page not found">
+</noscript><meta property="og:title" content="Networking">
 <meta property="og:description" content="A small blog focused on system administration">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://adminarchives.com/404.html"><meta property="og:site_name" content="Andrew's Admin Archives">
+<meta property="og:url" content="https://adminarchives.com/tags/networking/"><meta property="og:site_name" content="Andrew's Admin Archives">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="404 Page not found">
+<meta name=twitter:title content="Networking">
 <meta name=twitter:description content="A small blog focused on system administration">
 </head>
 <body class="list dark" id=top>
@@ -57,7 +58,37 @@
 </nav>
 </header>
 <main class=main>
-<div class=not-found>404</div>
+<header class=page-header><div class=breadcrumbs><a href=https://adminarchives.com/>Home</a>&nbsp;»&nbsp;<a href=https://adminarchives.com/tags/>Tags</a></div>
+<h1>
+Networking
+<a href=/tags/networking/index.xml title=RSS aria-label=RSS><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a>
+</h1>
+</header>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Isolate your homelab using VLANs, Proxmox, and OPNsense
+</h2>
+</header>
+<div class=entry-content>
+<p>NOTE: I soon plan to put more time into these articles including additional details and specific configs, as well as explaining how I set everything up. If you have any questions or would like to contribute to an article, please contact me at andrew@andrew-houser.com.
+Current network map Internet | Home Router (192.168.1.1/24) |------------------- Other devices on Home Network | | (VLAN 10 Uplink - Untagged) Switch | Proxmox Host ------ OPNsense VM (Uplink on VLAN 10, Internal on VLAN 5) | | | | (VLAN 5 & 10) | (VLAN 5 Internal) | | | VMs & Proxmox Host | VMs on Internal Network | (10....</p>
+</div>
+<footer class=entry-footer><span title="2023-09-19 12:20:06 -0400 EDT">September 19, 2023</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;298 words&nbsp;·&nbsp;Andrew</footer>
+<a class=entry-link aria-label="post link to Isolate your homelab using VLANs, Proxmox, and OPNsense" href=https://adminarchives.com/posts/isolate-homelab-with-vlan/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>WireGuard VPS as Reverse Proxy and Gateway to Home Network
+</h2>
+</header>
+<div class=entry-content>
+<p>Why use this over services like Tailscale, Zerotier, etc? WireGuard through a VPS will give you
+More control over your network and where your data goes. Infrastructure independence; you will not need to rely on proprietary servers that could go down at any time. Host on VPS of your choosing and get a public IP for your homelab. Also, it’s extremely fast. It can easily transfer over 500 mbit/s while only adding a few milliseconds of latency....</p>
+</div>
+<footer class=entry-footer><span title="2023-08-23 12:20:06 -0400 EDT">August 23, 2023</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;966 words&nbsp;·&nbsp;Andrew</footer>
+<a class=entry-link aria-label="post link to WireGuard VPS as Reverse Proxy and Gateway to Home Network" href=https://adminarchives.com/posts/vps-wireguard-gateway/></a>
+</article>
 </main>
 <footer class=footer>
 <span>&copy; 2023 <a href=https://adminarchives.com/>Andrew's Admin Archives</a></span>

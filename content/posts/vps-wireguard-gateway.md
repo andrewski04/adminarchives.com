@@ -6,7 +6,7 @@ draft: true
 # weight: 1
 # aliases: ["/first"]
 tags: ["Homelab", "WireGuard", "VPS", "Reverse Proxy", "Networking"]
-author: "Andrew Houser"
+author: "Andrew"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: false
@@ -14,7 +14,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Navigate around Carrier-Grade NAT (CGNAT) limitations by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network."
-canonicalURL: "https://andrew-houser.com/posts/vps-wireguard-gateway/"
+canonicalURL: "https://adminarchives.com/posts/vps-wireguard-gateway/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
 hideSummary: false
