@@ -13,7 +13,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Navigate around Carrier-Grade NAT (CGNAT) limitations by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network."
+description: "Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network."
 canonicalURL: "https://adminarchives.com/posts/vps-wireguard-gateway/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
