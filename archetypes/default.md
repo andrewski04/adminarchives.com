@@ -13,14 +13,14 @@ showToc: true
 TocOpen: false
 draft: false
 hidemeta: false
-comments: false
+comments: true
 description: "Test page"
 canonicalURL: "https://adminarchives.com/posts/test/"
 disableHLJS: true # to disable highlightjs
 disableShare: true
 disableHLJS: false
 hideSummary: false
-searchHidden: true
+searchHidden: false
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true

@@ -5,7 +5,7 @@ theme: PaperMod
 
 enableRobotsTXT: true
 buildDrafts: false
-buildFuture: false
+buildFuture: true
 buildExpired: false
 
 # Search outputs
@@ -24,26 +24,26 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Andrew's Admin Archives
-  description: "A small blog focused on system administration"
-  keywords: [Blog, Portfolio, PaperMod, homelab, network, vps, wireguard, vlan]
-  author: Andrew 
+  description: "Guides and posts about self-hosting, system-administration, and more."
+  keywords: [Blog, guide, PaperMod, homelab, network, vps, wireguard, vlan, proxmox, container, vm, self, hosted]
+  author: Andrew H.
   # author: ["Me", "You"] # multiple authors
   #images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: dark # dark, light
   disableThemeToggle: false
 
-  ShowReadingTime: false
+  ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
+  ShowCodeCopyButtons: true
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: false
+  comments: true
   hidemeta: false
   hideSummary: false
   showtoc: true
@@ -81,7 +81,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Welcome to Andrew's Admin Archives"
-    Content: Hi, I'm Andrew, a computer science student who enjoys systems administration and home server hosting. This is a tiny site where I document projects I'm working on and hopefully help some others who are trying to learn!
+    Content: Hi, I'm Andrew, a computer science student who enjoys systems administration, self-hosting, and programming. This is where I document projects I'm working on and post guides for both my future self and whomever else they may help.
 
   socialIcons:
     - name: github

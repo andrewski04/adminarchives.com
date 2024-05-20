@@ -1,7 +1,7 @@
 ---
 title: "Isolate your homelab using VLANs, Proxmox, and OPNsense"
 date: 2023-09-19T12:20:06-04:00
-draft: true
+draft: false
 
 # weight: 1
 # aliases: ["/first"]
@@ -10,15 +10,14 @@ author: "Andrew"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: false
-draft: false
 hidemeta: false
-comments: false
+comments: true
 description: "Create a secure and efficient isolated homelab on a non-VLAN aware home network using VLAN-aware switches and Proxmox bridges. When paired with Wireguard, you can securely access this network from anywhere. No longer takes down your entire houses network when you mess something up!"
 canonicalURL: "https://adminarchives.com/posts/isolate-homelab-with-vlan/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
 hideSummary: false
-searchHidden: true
+searchHidden: false
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true

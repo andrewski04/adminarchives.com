@@ -1,7 +1,7 @@
 ---
 title: "WireGuard VPS as Reverse Proxy and Gateway to Home Network"
 date: 2023-08-23T12:20:06-04:00
-draft: true
+draft: false
 
 # weight: 1
 # aliases: ["/first"]
@@ -10,15 +10,14 @@ author: "Andrew"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: false
-draft: false
 hidemeta: false
-comments: false
+comments: true
 description: "Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network."
 canonicalURL: "https://adminarchives.com/posts/vps-wireguard-gateway/"
 disableHLJS: false # to disable highlightjs
 disableShare: true
 hideSummary: false
-searchHidden: true
+searchHidden: false
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
