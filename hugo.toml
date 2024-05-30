@@ -1,3 +1,137 @@
-baseURL = 'https://example.org/'
+title = "Andrew's Admin Archives"
+baseURL = 'https://adminarchives.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+DefaultContentLanguage = "en"
+
+##########
+# Module #
+##########
+[[module.imports]]
+path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+
+[module.hugoVersion]
+extended = true
+min = "0.87.0"
+
+
+##############
+# Permalinks #
+##############
+[permalinks]
+post = "/post/:slug/"
+page = "/:slug/"
+
+
+##########
+# Params #
+##########
+[params]
+description = "My epic site description" # Meta description
+mainSections = ["post"]
+rssFullContent = true
+#favicon=""
+#featuredImageField = "image"
+
+###########
+# Sidebar #
+###########
+[params.sidebar]
+subtitle = "My website" # Sidebar description (under name)
+compact = false
+
+[params.sidebar.avatar]
+enabled = false
+#local = true
+#src = "img/avatar.png"
+
+
+###################
+# Sidebar Widgets #
+###################
+[[params.widgets.homepage]]
+type = "search"
+
+[[params.widgets.homepage]]
+type = "archives"
+
+[params.widgets.homepage.params]
+limit = 5
+
+[[params.widgets.homepage]]
+type = "categories"
+
+[params.widgets.homepage.params]
+limit = 10
+
+[[params.widgets.homepage]]
+type = "tag-cloud"
+
+[params.widgets.homepage.params]
+limit = 10
+
+[[params.widgets.page]]
+type = "toc"
+
+##########
+# Footer #
+##########
+[params.footer]
+since = "2023"
+#customText = ""
+
+#########
+# Other #
+#########
+[params.article]
+headingAnchor = false
+math = false
+toc = true
+readingTime = true
+
+[params.dateFormat]
+published = "Jan 02, 2006"
+lastUpdated = "Jan 02, 2006 15:04 EST"
+
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+[params.imageProcessing.cover]
+enabled = true
+
+[params.imageProcessing.content]
+enabled = true
+
+########
+# Menu #
+########
+[menu]
+main = []
+
+[[menu.social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/andrewski04"
+
+[menu.social.params]
+icon = "brand-github"
+
+##########
+# Markup #
+##########
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.tableOfContents]
+endLevel = 4
+ordered = true
+startLevel = 2
+
+[markup.highlight]
+noClasses = false
+codeFences = true
+guessSyntax = true
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = true
+tabWidth = 4
