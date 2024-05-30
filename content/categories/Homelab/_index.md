@@ -1,8 +1,8 @@
 ---
 title: "Homelab"
 description: "Articles about my homelab"
-slug: "Homelab"
+slug: "homelab"
 style:
-    background: "#2a9d8f"
+    background: "#1c5abd"
     color: "#fff"
 ---
