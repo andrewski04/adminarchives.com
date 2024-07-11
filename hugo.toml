@@ -26,7 +26,7 @@ page = "/:slug/"
 # Params #
 ##########
 [params]
-description = "Andrew's guides and personal projects for anything computer science." # Meta description
+description = "My guides and personal projects for anything homelab, programming, and computer science." # Meta description
 mainSections = ["post"]
 rssFullContent = true
 #favicon=""
@@ -36,7 +36,7 @@ rssFullContent = true
 # Sidebar #
 ###########
 [params.sidebar]
-subtitle = "My website" # Sidebar description (under name)
+subtitle = "Just a computer science student with a passion for homelabbing and programming. Welcome to my website! " # Sidebar description (under name)
 compact = false
 
 [params.sidebar.avatar]
@@ -90,7 +90,7 @@ readingTime = true
 
 [params.dateFormat]
 published = "Jan 02, 2006"
-lastUpdated = "Jan 02, 2006 15:04 EST"
+lastUpdated = "Jan 02, 2006"
 
 [params.colorScheme]
 toggle = true
@@ -115,6 +115,15 @@ url = "https://github.com/andrewski04"
 
 [menu.social.params]
 icon = "brand-github"
+
+[[menu.social]]
+identifier = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/andrew-houser/"
+
+[menu.social.params]
+icon = "brand-linkedin"
+
 
 ##########
 # Markup #

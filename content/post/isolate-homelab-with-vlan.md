@@ -5,13 +5,14 @@ draft = false
 
 description = "Create a secure and efficient isolated homelab on a non-VLAN aware home network using VLAN-aware switches and Proxmox bridges. When paired with Wireguard, you can securely access this network from anywhere. No longer takes down your entire houses network when you mess something up!"
 tags = ["Homelab", "VLAN", "Networking"]
-categories = ["Homelab"]
+categories = ["Homelab", "Proxmox"]
 
 #image = "/image.jpg" #featured image
-comments = true
+comments = false
 math = false
 toc = true
 readingTime = true
+
 +++
 
 ### Current network map

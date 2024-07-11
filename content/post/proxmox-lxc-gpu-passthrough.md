@@ -1,14 +1,14 @@
 +++
 title = 'Nvidia GPU Passthrough for LXC Containers in Proxmox VE'
 date = 2024-05-30T14:54:42-04:00
-draft = false
+draft = true
 
 description = "Allow Proxmox containers to interact with host's GPU with this simple passthrough method. Currently working on PVE version 8 with a Jellyfin container using the GPU for stream transcoding."
 tags = ["Homelab", "Proxmox", "LXC", "Container"]
 categories = ["Homelab", "Proxmox"]
 
 #image = "/image.jpg" #featured image
-comments = true
+comments = false
 math = false
 toc = true
 readingTime = true

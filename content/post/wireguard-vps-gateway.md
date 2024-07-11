@@ -8,7 +8,7 @@ tags = ["Homelab", "WireGuard", "VPS", "Reverse Proxy", "Networking"]
 categories = ["Homelab"]
 
 #image = "/image.jpg" #featured image
-comments = true
+comments = false
 math = false
 toc = true
 readingTime = true
