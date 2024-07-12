@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Container on Andrew&#39;s Admin Archives</title>
+        <link>http://localhost:1313/tags/container/</link>
+        <description>Recent content in Container on Andrew&#39;s Admin Archives</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 30 May 2024 14:54:42 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/container/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Nvidia GPU Passthrough for LXC Containers in Proxmox VE</title>
+        <link>http://localhost:1313/post/nvidia-gpu-passthrough-for-lxc-containers-in-proxmox-ve/</link>
+        <pubDate>Thu, 30 May 2024 14:54:42 -0400</pubDate>
+        
+        <guid>http://localhost:1313/post/nvidia-gpu-passthrough-for-lxc-containers-in-proxmox-ve/</guid>
+        <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h3&gt;&lt;p&gt;This method of installing Nvidia drivers for passthrough should work on most versions of Proxmox with most modern GPUs,
+as we are manually finding and installing the correct version for your device. I am currently using it for transcoding Jellyfin streams
+without issue, but more testing should be done for other purposes.&lt;/p&gt;
+&lt;p&gt;The thread where I came up with the solution &lt;a class=&#34;link&#34; href=&#34;https://forum.proxmox.com/threads/jellyfin-lxc-with-nvidia-gpu-transcoding-and-network-storage.138873/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;can be found here&lt;/a&gt;. It was extremely helpful in
+figuring out how to set this up and lead to me creating this simpler method.&lt;/p&gt;
+&lt;h3 id=&#34;environment&#34;&gt;Environment
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Note: Passthrough should work with container&amp;rsquo;s running most software,
+but additional steps may be required required for services running on Docker.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;- Proxmox Cluster running PVE 8.2.2 
+- One host node with RTX 3050 running Nvidia drivers 550.78
+- Jellyfin running on Debian container with 4gb RAM and 4 cores allocated&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

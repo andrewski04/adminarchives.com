@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network.">
+<title>WireGuard VPS as Reverse Proxy and Gateway to Home Network</title>
+
+<link rel='canonical' href='https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="WireGuard VPS as Reverse Proxy and Gateway to Home Network">
+<meta property='og:description' content="Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network.">
+<meta property='og:url' content='https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/'>
+<meta property='og:site_name' content='Andrew&#39;s Admin Archives'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Homelab' /><meta property='article:tag' content='WireGuard' /><meta property='article:tag' content='VPS' /><meta property='article:tag' content='Reverse Proxy' /><meta property='article:tag' content='Networking' /><meta property='article:published_time' content='2023-08-23T12:20:06-04:00'/><meta property='article:modified_time' content='2023-08-23T12:20:06-04:00'/>
+<meta name="twitter:title" content="WireGuard VPS as Reverse Proxy and Gateway to Home Network">
+<meta name="twitter:description" content="Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Andrew&#39;s Admin Archives</a></h1>
+            <h2 class="site-description">Just a computer science student with a passion for homelabbing and programming. Welcome to my website! </h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/andrewski04'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/andrew-houser/'
+                        target="_blank"
+                        title="LinkedIn"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg height="60" viewBox="0 0 60 60" width="60" xmlns="http://www.w3.org/2000/svg"><path d="m35.9955151 27.6266598c0-3.7872272-2.9443436-6.7968616-6.2228538-6.7968616-2.5050589 0-4.7197412 0-6.1910709 3.1702013-.2716348.585278-.5860749 2.2895189-.5860749 3.1324176v16.3675824l-7.9587385-.0000006-.0000003-20.7897407v-10.2543852h8.2644904l.4076675 4.044127h.178408c1.193235-1.9216397 3.9050832-4.044127 8.7976615-4.044127 5.964076 0 11.3105112 4.7207295 11.3105112 13.3739249v17.6702016h-8.0000002zm-31.67470423-18.86017956c-2.60381496 0-4.28403415-1.84242092-4.28403415-4.11897002 0-2.33188852 1.73460448-4.12183241 4.39089647-4.12183241 2.656292 0 4.28403415 1.78898976 4.33841944 4.12183241.00095412 2.2765491-1.68117331 4.11897002-4.44528176 4.11897002zm-3.32529533 34.73351926-.00000024-31.0441261 6.98820282.0000003.00000023 31.0441262z" fill="none" stroke="#ffffffb3" stroke-width="2.5" transform="translate(9.004485 6.5)"/></svg>
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about-me/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#why-use-this-over-services-like-tailscale-zerotier-etc">Why use this over services like Tailscale, Zerotier, etc?</a></li>
+    <li><a href="#network-diagram">Network Diagram</a></li>
+    <li><a href="#requirments">Requirments</a></li>
+    <li><a href="#wireguard-configs">WireGuard Configs</a>
+      <ol>
+        <li><a href="#vps-gateway">VPS Gateway</a></li>
+        <li><a href="#home-server">Home Server</a></li>
+      </ol>
+    </li>
+    <li><a href="#nginx-reverse-proxy">Nginx Reverse Proxy</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/homelab/" style="background-color: #1c5abd; color: #fff;">
+                Homelab
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/">WireGuard VPS as Reverse Proxy and Gateway to Home Network</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Navigate around CGNAT by securely exposing your homelab services with a reverse proxy. Additionally, access your home network from anywhere using WireGuard. This setup requires only an affordable VPS hosting a public IP, coupled with a WireGuard connection established within your home network.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 23, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="why-use-this-over-services-like-tailscale-zerotier-etc">Why use this over services like Tailscale, Zerotier, etc?
+</h2><p>WireGuard through a VPS will give you</p>
+<ul>
+<li>More control over your network and where your data goes.</li>
+<li>Infrastructure independence; you will not need to rely on proprietary servers that could go down at any time.</li>
+<li>Host on VPS of your choosing and get a public IP for your homelab.</li>
+</ul>
+<p>Also, it&rsquo;s <em>extremely</em> fast. It can easily transfer over 500 mbit/s while only adding a few milliseconds of latency.
+This website is currently running through the setup and I am able to establish a connection through the VPS (hosted about 100 miles away) and back to my home network with less than 20ms of latency. I even host game servers with this setup and have friends connect from across the country without issue.</p>
+<h2 id="network-diagram">Network Diagram
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   +-------------+
+</span></span><span class="line"><span class="cl">   |  Internet   |
+</span></span><span class="line"><span class="cl">   +-------------+
+</span></span><span class="line"><span class="cl">        |
+</span></span><span class="line"><span class="cl">        |
+</span></span><span class="line"><span class="cl">   +------------+      +------------+
+</span></span><span class="line"><span class="cl">   |   Public   |      |  Public    |
+</span></span><span class="line"><span class="cl">   |    Users   |&lt;----&gt;|    VPS     |  
+</span></span><span class="line"><span class="cl">   +------------+      +------------+
+</span></span><span class="line"><span class="cl">                          |      |
+</span></span><span class="line"><span class="cl">                          |      | 
+</span></span><span class="line"><span class="cl">                          |      | Public Reverse Proxy 
+</span></span><span class="line"><span class="cl">   +-------------+        |      | (for specific, forwarded services)
+</span></span><span class="line"><span class="cl">   |   CGNAT     |        |      
+</span></span><span class="line"><span class="cl">   +-------------+        | Secure WireGuard Network
+</span></span><span class="line"><span class="cl">        |                 | (Access entire home network
+</span></span><span class="line"><span class="cl">        |                 | if connected through WireGuard)
+</span></span><span class="line"><span class="cl">   +------------+         | 
+</span></span><span class="line"><span class="cl">   |   Home     |&lt;--------+
+</span></span><span class="line"><span class="cl">   | WireGuard  |
+</span></span><span class="line"><span class="cl">   |  Server    |
+</span></span><span class="line"><span class="cl">   +------------+
+</span></span><span class="line"><span class="cl">        |
+</span></span><span class="line"><span class="cl">   +-------------+
+</span></span><span class="line"><span class="cl">   | Home Network|
+</span></span><span class="line"><span class="cl">   | &amp; Services  |
+</span></span><span class="line"><span class="cl">   +-------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="requirments">Requirments
+</h2><ul>
+<li>Device or VM on home network with Wireguard</li>
+<li>VPS with public IP, Wireguard, and a reverse proxy of choice.<br>
+(Nginx Proxy Manager is great for most basic uses)</li>
+</ul>
+<h2 id="wireguard-configs">WireGuard Configs
+</h2><h3 id="vps-gateway">VPS Gateway
+</h3><p>First, we have the WireGuard config for the VPS. The config has IP rules that route any traffic coming in from the WireGuard interface to go back out of the WireGuard interface. This is what allows you to connect to the rest of your home network, as well as the internet through your home network. It also adds an optional route to your home network. This route is for the VPS itself to route to your home network through WireGuard, and should be used for if you have a public reverse proxy forwarding from your home network. Finally, it has your home WireGuard server as a peer, along with any other devices you&rsquo;d like on the network.</p>
+<p>Your VPS may or may not have a firewall setup by default, but I recommend using UFW and only allowing connections on the ports for WireGuard and your reverse proxy.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Interface</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Use unique WG subnet</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Address</span> <span class="p">=</span> <span class="mf">10.0</span><span class="p">.</span><span class="mf">0.1</span><span class="err">/</span><span class="mi">24</span>  
+</span></span><span class="line"><span class="cl"><span class="nx">ListenPort</span> <span class="p">=</span> <span class="mi">51820</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PrivateKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Route incoming WG traffic out of WG interface (Forward to home WG server)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Table</span> <span class="p">=</span> <span class="mi">123</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">sysctl</span> <span class="nx">-w</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ipv4</span><span class="p">.</span><span class="nx">ip_forward</span><span class="p">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">ip</span> <span class="nx">rule</span> <span class="nx">add</span> <span class="nx">iif</span> <span class="nx">wg0</span> <span class="nx">table</span> <span class="mi">123</span> <span class="nx">priority</span> <span class="mi">456</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">ip</span> <span class="nx">rule</span> <span class="nx">del</span> <span class="nx">iif</span> <span class="nx">wg0</span> <span class="nx">table</span> <span class="mi">123</span> <span class="nx">priority</span> <span class="mi">456</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">sysctl</span> <span class="nx">-w</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ipv6</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">forwarding</span><span class="p">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">ip</span> <span class="mi">-6</span> <span class="nx">rule</span> <span class="nx">add</span> <span class="nx">iif</span> <span class="nx">wg0</span> <span class="nx">table</span> <span class="mi">123</span> <span class="nx">priority</span> <span class="mi">456</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">ip</span> <span class="mi">-6</span> <span class="nx">rule</span> <span class="nx">del</span> <span class="nx">iif</span> <span class="nx">wg0</span> <span class="nx">table</span> <span class="mi">123</span> <span class="nx">priority</span> <span class="mi">456</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Make this your home subnet. Custom route for traffic from VPS/reverse proxy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">PostUp</span> <span class="p">=</span> <span class="nx">ip</span> <span class="nx">route</span> <span class="nx">add</span> <span class="mf">192.168</span><span class="p">.</span><span class="mf">1.1</span><span class="err">/</span><span class="mi">24</span> <span class="nx">dev</span> <span class="nx">wg0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Home WG server. Use keep alive behind NAT.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Peer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PublicKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PresharedKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">AllowedIPs</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">.</span><span class="mf">0.0</span><span class="err">/</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PersistentKeepalive</span> <span class="p">=</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Add other clients here</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Example: laptop client</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Peer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PublicKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PresharedKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Unique IP with /32 subnet (will only route packets for that ip to that device)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">AllowedIPs</span> <span class="p">=</span> <span class="mf">10.0</span><span class="p">.</span><span class="mf">0.5</span><span class="err">/</span><span class="mi">32</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">PersistentKeepalive</span> <span class="p">=</span> <span class="mi">25</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>NOTE:  The Wireguard network and your home network must be on different subnets!</strong> Custom routing and masquarading rules will allow you to connect to home network through Wireguard. These rules were adapted from adapted from <a class="link" href="https://www.procustodibus.com/blog/2022/06/multi-hop-wireguard/"  target="_blank" rel="noopener"
+    >Multi Hop Wireguard</a> by <a class="link" href="https://www.procustodibus.com/authors/justin-ludwig/"  target="_blank" rel="noopener"
+    >Justin Ludwig</a>.</p>
+</blockquote>
+<h3 id="home-server">Home Server
+</h3><p>Your home WireGuard server takes all traffic coming in and marks it with a tag. Packets with this tag are then masqueraded out through your servers default gateway (your home network or home router). This allows you to connect to other devices on the home network as well as the internet through your home network, such that any devices connected through WireGuard will share the same public IP as your home network.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Interface</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PrivateKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Address</span> <span class="p">=</span> <span class="mf">10.0</span><span class="p">.</span><span class="mf">0.2</span><span class="err">/</span><span class="mi">24</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Masquerade traffic over default network (Home lan/wan)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">sysctl</span> <span class="nx">-w</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ipv4</span><span class="p">.</span><span class="nx">ip_forward</span><span class="p">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">iptables</span> <span class="nx">-t</span> <span class="nx">mangle</span> <span class="nx">-A</span> <span class="nx">PREROUTING</span> <span class="nx">-i</span> <span class="nx">wg0</span> <span class="nx">-j</span> <span class="nx">MARK</span> <span class="nx">--set-mark</span> <span class="mi">0</span><span class="nx">x30</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">iptables</span> <span class="nx">-t</span> <span class="nx">nat</span> <span class="nx">-A</span> <span class="nx">POSTROUTING</span> <span class="err">!</span> <span class="nx">-o</span> <span class="nx">wg0</span> <span class="nx">-m</span> <span class="nx">mark</span> <span class="nx">--mark</span> <span class="mi">0</span><span class="nx">x30</span> <span class="nx">-j</span> <span class="nx">MASQUERADE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">iptables</span> <span class="nx">-t</span> <span class="nx">mangle</span> <span class="nx">-D</span> <span class="nx">PREROUTING</span> <span class="nx">-i</span> <span class="nx">wg0</span> <span class="nx">-j</span> <span class="nx">MARK</span> <span class="nx">--set-mark</span> <span class="mi">0</span><span class="nx">x30</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">iptables</span> <span class="nx">-t</span> <span class="nx">nat</span> <span class="nx">-D</span> <span class="nx">POSTROUTING</span> <span class="err">!</span> <span class="nx">-o</span> <span class="nx">wg0</span> <span class="nx">-m</span> <span class="nx">mark</span> <span class="nx">--mark</span> <span class="mi">0</span><span class="nx">x30</span> <span class="nx">-j</span> <span class="nx">MASQUERADE</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">sysctl</span> <span class="nx">-w</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ipv6</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">all</span><span class="p">.</span><span class="nx">forwarding</span><span class="p">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">ip6tables</span> <span class="nx">-t</span> <span class="nx">mangle</span> <span class="nx">-A</span> <span class="nx">PREROUTING</span> <span class="nx">-i</span> <span class="nx">wg0</span> <span class="nx">-j</span> <span class="nx">MARK</span> <span class="nx">--set-mark</span> <span class="mi">0</span><span class="nx">x30</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PreUp</span> <span class="p">=</span> <span class="nx">ip6tables</span> <span class="nx">-t</span> <span class="nx">nat</span> <span class="nx">-A</span> <span class="nx">POSTROUTING</span> <span class="err">!</span> <span class="nx">-o</span> <span class="nx">wg0</span> <span class="nx">-m</span> <span class="nx">mark</span> <span class="nx">--mark</span> <span class="mi">0</span><span class="nx">x30</span> <span class="nx">-j</span> <span class="nx">MASQUERADE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">ip6tables</span> <span class="nx">-t</span> <span class="nx">mangle</span> <span class="nx">-D</span> <span class="nx">PREROUTING</span> <span class="nx">-i</span> <span class="nx">wg0</span> <span class="nx">-j</span> <span class="nx">MARK</span> <span class="nx">--set-mark</span> <span class="mi">0</span><span class="nx">x30</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PostDown</span> <span class="p">=</span> <span class="nx">ip6tables</span> <span class="nx">-t</span> <span class="nx">nat</span> <span class="nx">-D</span> <span class="nx">POSTROUTING</span> <span class="err">!</span> <span class="nx">-o</span> <span class="nx">wg0</span> <span class="nx">-m</span> <span class="nx">mark</span> <span class="nx">--mark</span> <span class="mi">0</span><span class="nx">x30</span> <span class="nx">-j</span> <span class="nx">MASQUERADE</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Public VPS gateway</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Peer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PublicKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PresharedKey</span> <span class="p">=</span> <span class="c">####</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Endpoint</span> <span class="p">=</span> <span class="c">##.##.##.##:51820</span>
+</span></span><span class="line"><span class="cl"><span class="nx">AllowedIPs</span> <span class="p">=</span> <span class="mf">10.0</span><span class="p">.</span><span class="mf">0.1</span><span class="err">/</span><span class="mi">24</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PersistentKeepalive</span> <span class="p">=</span> <span class="mi">25</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nginx-reverse-proxy">Nginx Reverse Proxy
+</h2><p>Finally, you may want to set up a reverse proxy. This will allow you to connect to services at home through a public domain as well as forward port streams directly, such as for a game server.</p>
+<p>I would highly recommend using Nginx Proxy Manager (NPM). Use the following Docker Compose to get it running very quick.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.8&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nginx</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;jc21/nginx-proxy-manager:latest&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;host&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./data:/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./letsencrypt:/etc/letsencrypt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/nginx:/var/log/nginx</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>From the NPM web interface you can add domains and requests to those domain are forwarded to the specified IP address and port of a service on your home network. Now just point that domain towards your public VPS and you can connect to that domain from anywhere!</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/homelab/">Homelab</a>
+        
+            <a href="/tags/wireguard/">WireGuard</a>
+        
+            <a href="/tags/vps/">VPS</a>
+        
+            <a href="/tags/reverse-proxy/">Reverse Proxy</a>
+        
+            <a href="/tags/networking/">Networking</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 Andrew&#39;s Admin Archives
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
