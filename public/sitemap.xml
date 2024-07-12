@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://adminarchives.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/about-me/</loc>
+    <loc>http://localhost:1313/about-me/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/page/</loc>
+    <loc>http://localhost:1313/page/</loc>
     <lastmod>2024-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/post/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-05-30T14:54:42-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/homelab/</loc>
+    <loc>http://localhost:1313/tags/homelab/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/categories/homelab/</loc>
+    <loc>http://localhost:1313/categories/homelab/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</loc>
+    <loc>http://localhost:1313/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/networking/</loc>
+    <loc>http://localhost:1313/tags/networking/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/categories/proxmox/</loc>
+    <loc>http://localhost:1313/categories/proxmox/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/vlan/</loc>
+    <loc>http://localhost:1313/tags/vlan/</loc>
     <lastmod>2023-09-19T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/reverse-proxy/</loc>
+    <loc>http://localhost:1313/tags/reverse-proxy/</loc>
     <lastmod>2023-08-23T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/vps/</loc>
+    <loc>http://localhost:1313/tags/vps/</loc>
     <lastmod>2023-08-23T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/tags/wireguard/</loc>
+    <loc>http://localhost:1313/tags/wireguard/</loc>
     <lastmod>2023-08-23T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</loc>
+    <loc>http://localhost:1313/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</loc>
     <lastmod>2023-08-23T12:20:06-04:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adminarchives.com/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>

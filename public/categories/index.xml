@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Andrew&#39;s Admin Archives</title>
-        <link>https://adminarchives.com/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in Categories on Andrew&#39;s Admin Archives</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 19 Sep 2023 12:20:06 -0400</lastBuildDate><atom:link href="https://adminarchives.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 19 Sep 2023 12:20:06 -0400</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Homelab</title>
-        <link>https://adminarchives.com/categories/homelab/</link>
+        <link>http://localhost:1313/categories/homelab/</link>
         <pubDate>Tue, 19 Sep 2023 12:20:06 -0400</pubDate>
         
-        <guid>https://adminarchives.com/categories/homelab/</guid>
+        <guid>http://localhost:1313/categories/homelab/</guid>
         <description></description>
         </item>
         <item>
         <title>Proxmox</title>
-        <link>https://adminarchives.com/categories/proxmox/</link>
+        <link>http://localhost:1313/categories/proxmox/</link>
         <pubDate>Tue, 19 Sep 2023 12:20:06 -0400</pubDate>
         
-        <guid>https://adminarchives.com/categories/proxmox/</guid>
+        <guid>http://localhost:1313/categories/proxmox/</guid>
         <description></description>
         </item>
         

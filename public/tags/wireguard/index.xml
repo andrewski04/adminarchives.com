@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>WireGuard on Andrew&#39;s Admin Archives</title>
-        <link>https://adminarchives.com/tags/wireguard/</link>
+        <link>http://localhost:1313/tags/wireguard/</link>
         <description>Recent content in WireGuard on Andrew&#39;s Admin Archives</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 23 Aug 2023 12:20:06 -0400</lastBuildDate><atom:link href="https://adminarchives.com/tags/wireguard/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 23 Aug 2023 12:20:06 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/wireguard/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>WireGuard VPS as Reverse Proxy and Gateway to Home Network</title>
-        <link>https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</link>
+        <link>http://localhost:1313/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</link>
         <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
         
-        <guid>https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</guid>
+        <guid>http://localhost:1313/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</guid>
         <description>&lt;h2 id=&#34;why-use-this-over-services-like-tailscale-zerotier-etc&#34;&gt;Why use this over services like Tailscale, Zerotier, etc?
 &lt;/h2&gt;&lt;p&gt;WireGuard through a VPS will give you&lt;/p&gt;
 &lt;ul&gt;

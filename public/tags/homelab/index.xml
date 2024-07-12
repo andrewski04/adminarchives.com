@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Homelab on Andrew&#39;s Admin Archives</title>
-        <link>https://adminarchives.com/tags/homelab/</link>
+        <link>http://localhost:1313/tags/homelab/</link>
         <description>Recent content in Homelab on Andrew&#39;s Admin Archives</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 19 Sep 2023 12:20:06 -0400</lastBuildDate><atom:link href="https://adminarchives.com/tags/homelab/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 19 Sep 2023 12:20:06 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/homelab/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Isolate your homelab using VLANs, Proxmox, and OPNsense</title>
-        <link>https://adminarchives.com/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</link>
+        <link>http://localhost:1313/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</link>
         <pubDate>Tue, 19 Sep 2023 12:20:06 -0400</pubDate>
         
-        <guid>https://adminarchives.com/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</guid>
+        <guid>http://localhost:1313/post/isolate-your-homelab-using-vlans-proxmox-and-opnsense/</guid>
         <description>&lt;h3 id=&#34;current-network-map&#34;&gt;Current network map
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -93,10 +93,10 @@ In this example, VLAN 15 will be isolated from your management network. Isolatio
         </item>
         <item>
         <title>WireGuard VPS as Reverse Proxy and Gateway to Home Network</title>
-        <link>https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</link>
+        <link>http://localhost:1313/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</link>
         <pubDate>Wed, 23 Aug 2023 12:20:06 -0400</pubDate>
         
-        <guid>https://adminarchives.com/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</guid>
+        <guid>http://localhost:1313/post/wireguard-vps-as-reverse-proxy-and-gateway-to-home-network/</guid>
         <description>&lt;h2 id=&#34;why-use-this-over-services-like-tailscale-zerotier-etc&#34;&gt;Why use this over services like Tailscale, Zerotier, etc?
 &lt;/h2&gt;&lt;p&gt;WireGuard through a VPS will give you&lt;/p&gt;
 &lt;ul&gt;
